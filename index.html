@@ -118,6 +118,16 @@
     .note{margin-top:10px}
     .stack{gap:10px}
     .assess-grid{gap:10px !important}
+    /* Slide de Operacionalização: boards com scroll horizontal */
+    #s8b .op-sub{white-space:normal !important}
+    #s8b .opwrap{gap:10px}
+    #s8b .opboard{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+    #s8b .opboard::-webkit-scrollbar{display:none}
+    #s8b .kb{grid-template-columns:repeat(4,minmax(108px,1fr)) !important;gap:6px !important}
+    #s8b .kb-slot{height:auto !important;max-height:160px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+    #s8b .op-footer{flex-direction:column;gap:8px;margin-top:10px;align-items:stretch}
+    #s8b .kbbtn{width:100%;text-align:center}
+    #s8b .op-hint{font-size:9px;text-align:center}
   }
   /* Landscape em tela pequena: scroll vertical dentro do slide */
   @media (max-width:900px) and (orientation:landscape){
@@ -555,6 +565,7 @@
   var tsX=0,tsY=0;
   document.addEventListener('touchstart',function(e){tsX=e.touches[0].clientX;tsY=e.touches[0].clientY;},{passive:true});
   document.addEventListener('touchend',function(e){
+    if(window.innerWidth<900) return;
     var dx=e.changedTouches[0].clientX-tsX,dy=e.changedTouches[0].clientY-tsY;
     if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>44){hideDetail();if(dx<0)next();else prev();}
   },{passive:true});
